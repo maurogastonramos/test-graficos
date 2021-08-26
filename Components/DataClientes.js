@@ -1,4 +1,13 @@
 Vue.component("data-clientes", {
+  props: {
+    clienteActivo: {
+      type: Object,
+      required: false,
+      default: () => {
+        return {};
+      },
+    },
+  },
   data() {
     return {
       cols: ["Name", "HVA", "Metabo", "Importe Total"],
@@ -65,7 +74,7 @@ Vue.component("data-clientes", {
   template: `
     <table-layout :cols="cols">
       <tr v-for="(row,index) in rows" :key="row.id" 
-        :class="[{'bg-gray-100': index%2}, 'hover:bg-gray-300 cursor-pointer']"
+        :class="[{'bg-gray-100': index%2, 'bg-purple-200': clienteActivo && row.id === clienteActivo.id}, 'hover:bg-gray-300 cursor-pointer']"
         @click="$emit('row-clicked', row)"
       >
         <td class="px-6 py-2">
