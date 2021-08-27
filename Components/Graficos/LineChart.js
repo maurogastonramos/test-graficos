@@ -34,9 +34,18 @@ Vue.component("line-chart", {
     const options = {
       maintainAspectRatio: false,
       layout: {
-        padding: 20,
+        padding: {
+          top: 50,
+          left: 10,
+          right: 20,
+          bottom: 20
+        }
       },
-      plugins: {},
+      plugins:{
+        legend: {
+          display: false
+        }
+      },
       onClick: (e) => {
         let clickedPoint = this.chart.getElementsAtEventForMode(
           e,

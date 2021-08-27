@@ -11,29 +11,32 @@ Vue.component("chart-compras", {
     this.labels = ["January", "February", "March", "April", "May", "June"];
 
     let data = [];
-    this.labels.forEach(l => {
+    this.labels.forEach((l) => {
       data.push(getRandomInt(30));
-    })
+    });
     this.datasets.push({
-      label: "Dato X",
-      backgroundColor: "#7B4B94",
-      borderColor: "#7B4B94",
+      label: "USD",
+      backgroundColor: "#1a3852",
+      borderColor: "#1a3852",
       data: data,
     });
 
     this.complete = true;
   },
+  computed: {
+    total: function(){
+      return this.datasets[0].data.reduce((acum, d) => {
+        return acum += d;
+      })
+    }
+  },
   methods: {
-    add() {
-      this.datasets.push({
-        label: "Dato2",
-        backgroundColor: "#93E5AB",
-        borderColor: "#93E5AB",
-        data: [5, 10, 5, 2, 20, 30, 45],
-      });
-    },
   },
   template: `
-        <line-chart v-if="complete" :labels="labels" :datasets="datasets" :config="config" />
+  <div class="relative h-full">
+      <h3 class="absolute top-3 right-5">Total: {{total}} USD</h3>
+      <h3 class="absolute top-3 left-5 font-medium">Pedidos en USD</h3>
+      <line-chart v-if="complete" :labels="labels" :datasets="datasets" :config="config" />
+  </div>
     `,
 });

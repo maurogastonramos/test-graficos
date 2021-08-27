@@ -34,12 +34,24 @@ Vue.component("doughnut-chart", {
     const options = {
       aspectRatio: 1,
       maintainAspectRatio: false,
+      layout: {
+        padding: {
+          top: 50,
+          left: 20,
+          right: 20,
+          bottom: 20,
+        },
+      },
       plugins: {
         legend: {
-          align: "start",
+          labels: {
+            boxWidth: 20,
+          },
+          position: "bottom",
         },
         labels: {
           fontColor: "#fff",
+          overlap: false,
         },
       },
       onClick: (e) => {

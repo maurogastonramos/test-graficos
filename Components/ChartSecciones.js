@@ -1,4 +1,4 @@
-Vue.component("chart-marcas", {
+Vue.component("chart-secciones", {
   data: function () {
     return {
       config: { type: "doughnut", data: {} },
@@ -9,7 +9,7 @@ Vue.component("chart-marcas", {
   },
   created: function () {
     // Fake Labels
-    const posiblesLabels = ["Gardena", "Husqvarna", "Metabo", "Niwa"];
+    const posiblesLabels = ["Jardín", "Forestal y poda", "Agro"];
     this.labels = posiblesLabels.slice(0, getRandomInt(posiblesLabels.length));
 
     // Fake Data
@@ -19,7 +19,7 @@ Vue.component("chart-marcas", {
     });
     this.datasets.push({
       label: "",
-      backgroundColor: this.labels.map((l) => getBrandColor(l)),
+      backgroundColor: this.labels.map((l) => getRandomColor()),
       data: data,
     });
 
@@ -27,7 +27,7 @@ Vue.component("chart-marcas", {
   },
   template: `
     <div class="relative h-full w-full">
-      <h3 class="absolute top-3 left-5">Marcas</h3>
+      <h3 class="absolute top-3 left-5">Secciones</h3>
       <doughnut-chart v-if="complete" :labels="labels" :datasets="datasets" :config="config" />
     </div>
     `,
