@@ -8,8 +8,6 @@ Vue.component("range-date-picker", {
     return {
       startDate: null,
       endDate: null,
-      dayStr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      date: ["2018-06-01"],
     };
   },
   computed: {
@@ -23,8 +21,8 @@ Vue.component("range-date-picker", {
 
     this.startDate = startDate.format("DD/MM/YYYY");
     this.endDate = endDate.format("DD/MM/YYYY");
-
-    console.log(startDate);
+    this.emitFechas(this.startDate, this.endDate);
+    
     $('input[name="daterange"]').daterangepicker(
       {
         locale: {
@@ -55,17 +53,19 @@ Vue.component("range-date-picker", {
         opens: "left",
         startDate: startDate,
         endDate: endDate,
+        // minDate: "30/08/2021"
       },
       (start, end, label) => {
         this.startDate = start.format("DD/MM/YYYY");
         this.endDate = end.format("DD/MM/YYYY");
+
+        this.emitFechas(this.startDate, this.endDate);
       }
     );
   },
   methods: {
-    log: function (val) {
-      this.date = val;
-      console.log(val);
+    emitFechas(start, end) {
+      this.$emit('change-fecha', {start, end})
     },
   },
 });

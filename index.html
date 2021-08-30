@@ -5,31 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link
-      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-    <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
+    <!-- Vue Tailwind -->
+    <script src="./lib/vue-dev.js"></script>
+    <!-- <script src="./lib/vue-prod.js"></script> -->
+    <link href="./lib/tailwind.min.css" rel="stylesheet" />
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <!-- Gráficos -->
+    <script src="./lib/chart.js"></script>
+    <script src="./lib/chartjs-plugin-label.min.js"></script>
 
-    <script src="./functions.js"></script>
+    <!-- Datepicker -->
+    <script type="text/javascript" src="./lib/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/moment.min.js"></script>
+    <script type="text/javascript" src="./lib/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/daterangepicker.css" />
+
+    <!-- Propias -->
+    <script src="./Functions.js"></script>
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+    <!-- Componentes -->
     <script src="./Filtros.js"></script>
     <script src="./Components/MultiSelect.js"></script>
 
+    <!-- Paneles de gráficos -->
     <script src="./Components/DataClientes.js"></script>
     <script src="./Components/ChartCompras.js"></script>
     <script src="./Components/ChartMarcas.js"></script>
     <script src="./Components/ChartSecciones.js"></script>
     <script src="./Components/RangeDatePicker.js"></script>
 
-
+    <!-- Componente Gráficos -->
     <script src="./Components/Graficos/ItemChart.js"></script>
     <script src="./Components/Graficos/TableLayout.js"></script>
     <script src="./Components/Graficos/LineChart.js"></script>
@@ -39,7 +45,7 @@
   </head>
   <body class="bg-gray-100">
     <div id="app" class="container py-2 px-8 max-w-screen-xl mx-auto">
-      <filtros></filtros>
+      <filtros @change-filtros="changeFiltros"></filtros>
 
       <div class="mt-5">
         <div class="mt-2 grid grid-cols-4 md:grid-cols-8 gap-y-6 gap-x-6">
@@ -70,7 +76,11 @@
             return {};
           },
           mounted: function () {},
-          methods: {},
+          methods: {
+            changeFiltros(filtros) {
+              console.log(filtros);
+            },
+          },
         });
       });
     </script>
