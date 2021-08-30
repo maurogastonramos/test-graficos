@@ -1,10 +1,10 @@
 Vue.component("multi-select", {
-    props: {
-        opciones: {
-            type: Array,
-            required: true
-        }
+  props: {
+    opciones: {
+      type: Array,
+      required: true,
     },
+  },
   data() {
     return {
       open: false,
@@ -52,7 +52,7 @@ Vue.component("multi-select", {
       } else {
         this.deleteActivo(opcionIndex);
       }
-      this.$emit('change-activos', this.activos);
+      this.$emit("change-activos", this.activos);
     },
     deleteActivo(index) {
       this.activos.splice(index, 1);
@@ -97,29 +97,29 @@ Vue.component("multi-select", {
 
                 <div class="h-56 shadow-md bg-white border z-40 w-full lef-0 rounded max-h-select overflow-y-auto">
                     <div v-if="opcionesOrdenadas.length === 0" class="text-gray-500 p-2">No hay resultados para mostrar.</div>
-                    <div 
-                        v-for="opcion in opcionesOrdenadas" 
-                        :key="opcion.id" 
-                        :class="[
-                            {'hover:bg-gray-200': activos.indexOf(opcion.id) === -1},
-                            {'hover:bg-red-100': activos.indexOf(opcion.id) >= 0},
-                            'flex flex-col w-full bg-white'
-                        ]"
-                        @click="clickOpcion(opcion.id)"
-                    >
-                        <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-teal-100">
-                            <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100">
-                                <div class="w-full items-center flex">
-                                    <div class="mx-2 leading-6  ">
-                                        {{opcion.value}}
-                                    </div>
-                                    <div v-if="activos.indexOf(opcion.id) >= 0" class="flex-1 text-right text-sm text-gray-500">
-                                        Seleccionada
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <transition-group name="flip-list" tag="div">
+                      <div 
+                          v-for="opcion in opcionesOrdenadas" 
+                          :key="opcion.id" 
+                          :class="[
+                              'flex flex-col w-full bg-white list-item hover:bg-gray-200'
+                          ]"
+                          @click="clickOpcion(opcion.id)"
+                      >
+                          <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-teal-100">
+                              <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100">
+                                  <div class="w-full items-center flex">
+                                      <div class="mx-2 leading-6  ">
+                                          {{opcion.value}}
+                                      </div>
+                                      <div class="flex-1 text-right text-sm text-gray-500">
+                                          <input type="checkbox" :checked="activos.indexOf(opcion.id) >= 0">
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                    </transition-group>
                 </div>
             </div>
 
