@@ -34,7 +34,7 @@ Vue.component("filtros", {
       activos: {
         clientes: [],
         vendedores: [],
-        familias: []
+        familias: [],
       },
     };
   },
@@ -60,7 +60,7 @@ Vue.component("filtros", {
         </div>
         <div class="col-span-1">
             <h3 class="text-lg font-medium">Rango</h3>
-            <range-date-picker />
+            <range-date-picker/>
         </div>
     </div>
     `,
